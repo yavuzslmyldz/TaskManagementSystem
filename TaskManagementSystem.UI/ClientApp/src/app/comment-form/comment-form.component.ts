@@ -24,6 +24,7 @@ export class CommentFormComponent {
 
   comment: any;
   types = commentTypes;
+  minRemainderDate = new Date;
 
 
   commentForm = new FormGroup({
@@ -35,6 +36,7 @@ export class CommentFormComponent {
 
 
   ngOnInit() {
+
     this.commentForm = this.fb.group({
       commentText: ['', [Validators.required, Validators.maxLength(500), Validators.minLength(10)]],
       commentType: ['', [Validators.required]],

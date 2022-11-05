@@ -21,6 +21,7 @@ export class TaskFormComponent {
   statuses = taskStatuses;
   types = taskTypes;
   assigns = taskAssigns;
+  minRequiredByDate = new Date;
 
 
   taskForm = new FormGroup({

@@ -67,7 +67,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">Remainder Date</span>
           </div>
-          <input type="date" class="form-control" formControlName="remainderDate">
+          <input type="date" class="form-control" formControlName="remainderDate" min="{{minRemainderDate | date:'yyyy-MM-dd'}}">
         </div>
 
         <!--#endregion -->

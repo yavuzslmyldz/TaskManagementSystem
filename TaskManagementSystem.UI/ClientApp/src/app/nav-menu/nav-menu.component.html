@@ -1,9 +1,9 @@
-<mat-toolbar color="primary" class="example-toolbar">
+<mat-toolbar color="primary" class="app-menu-toolbar">
   <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
-  <h1 class="example-app-name">Task Management System</h1>
+  <h1 class="app-menu-task-management">Task Management System</h1>
 </mat-toolbar>
-<mat-sidenav-container class="example-container" autosize >
-  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+<mat-sidenav-container class="app-menu-container" autosize >
+  <mat-sidenav #sidenav class="app-menu-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
     <mat-nav-list>
       <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
         <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
@@ -12,7 +12,6 @@
       </mat-list-item>
       <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
         <a mat-list-item (click)="navigator('/dashboard')">System Task Dashboard  </a>
-        <a mat-list-item (click)="navigator('/add-task')">Add Task</a>
       </div>
     </mat-nav-list>
     <mat-nav-list>

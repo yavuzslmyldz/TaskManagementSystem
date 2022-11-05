@@ -19,7 +19,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">Required by date *</span>
           </div>
-          <input type="date" class="form-control" formControlName="requiredByDate" [class.valid]="taskForm.get('requiredByDate')?.valid &&
+          <input type="date" class="form-control" formControlName="requiredByDate" min="{{minRequiredByDate | date:'yyyy-MM-dd'}}" [class.valid]="taskForm.get('requiredByDate')?.valid &&
         (taskForm.get('requiredByDate')?.dirty || taskForm.get('requiredByDate')?.touched)"
                  [class.invalid]="taskForm.get('description')?.invalid &&
         (taskForm.get('requiredByDate')?.dirty || taskForm.get('requiredByDate')?.touched)">

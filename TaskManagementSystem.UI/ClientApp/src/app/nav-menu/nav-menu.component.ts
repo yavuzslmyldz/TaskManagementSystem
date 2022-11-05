@@ -11,9 +11,9 @@ import { Router } from "@angular/router";
 export class NavMenuComponent {
   @ViewChild('sidenav')
   isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
+  showSubmenu: boolean = true;
+  isShowing = true;
+
 
   constructor( private router: Router) {
 

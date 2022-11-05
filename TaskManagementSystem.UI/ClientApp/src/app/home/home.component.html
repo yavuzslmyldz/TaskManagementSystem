@@ -1,14 +1,26 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
-<ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="font-size:21px;line-height:107%;">Task Management System Technical Specifications</span></p>
+<p style="margin: 0cm 0cm 8pt 35.4pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-indent: 35.4pt; text-align: left;"><span style="font-size:21px;line-height:107%;">01 November 2022</span></p>
+<p style="margin: 0cm 0cm 8pt 35.4pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-indent: 35.4pt; text-align: left;"><span style="font-size:21px;line-height:107%;">Author: Yavuz Selim Yıldız</span></p>
+<p style="margin: 0cm 0cm 8pt 35.4pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-indent: 35.4pt; text-align: left;"><span style="font-size:21px;line-height:107%;">Team: Yavuz Selim Yıldız</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><br></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:21px;line-height:107%;">Overview:</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:16px;line-height:107%;">The current system for managing basic tasks. System will allow to users, adding, listing and</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:16px;line-height:107%;">updating tasks and also able to adding comments to it. Users will be able to assign task to other users and set action date for &nbsp;task via comments.&nbsp;</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:16px;line-height:107%;">&nbsp;</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:21px;line-height:107%;">Goals:</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:16px;line-height:107%;">The system will include web based application with:</span></p>
+<ul style="list-style-type: disc;margin-left:11px;">
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Multi layered architecture (Clean Architecture)</span></li>
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Client App with Angular + TypeScript + Html</span></li>
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Postgresql&nbsp;</span></li>
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">.Net Core &amp; C#</span></li>
 </ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-  <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-  <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-  <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
+<p style="margin: 0cm 0cm 8pt 21pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:16px;line-height:107%;">&nbsp;</span></p>
+<p style="margin: 0cm 0cm 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:21px;line-height:107%;">Requirements:</span></p>
+<ul style="list-style-type: disc;margin-left:11px;">
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Task Dashboard</span></li>
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Task forms for creation and editing</span></li>
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Comments form &nbsp;creation and deleting</span></li>
+  <li style="text-align: left;"><span style="line-height:107%;font-size:16px;">Back-end services for CRUD operations</span></li>
 </ul>
-<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+<p style="margin: 0cm 0cm 8pt 21pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif; text-align: left;"><span style="font-size:16px;line-height:107%;">&nbsp;</span></p>
