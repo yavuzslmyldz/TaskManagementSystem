@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace TaskManagementSystem.Infrastructure.Persistence.Repositories
         {
             dbContext = _dbContext;
         }
-        public Task<int> CreateAsync(Comment entity)
+        public async Task<int> CreateAsync(Comment entity)
         {
 
             object[] parameters = new object[] {
@@ -38,18 +39,22 @@ namespace TaskManagementSystem.Infrastructure.Persistence.Repositories
                 new NpgsqlParameter("@RemainderDate", SqlDbType.DateTime)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = entity.RemainderDate
-                },
-
+                    Value = entity.RemainderDate != null ? entity.RemainderDate : DBNull.Value
+                },                                
+                new NpgsqlParameter("@CreatedDate", SqlDbType.DateTime)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = DateTime.Now
+                }
             };
 
-            return dbContext.Database.ExecuteSqlRawAsync("INSERT INTO public.\"Comments\" (task_id,comment_text,comment_type,remainder_date" +
-                ") VALUES(@TaskId,@CommentText,@CommentType,@RemainderDate)", parameters);
+            return await dbContext.Database.ExecuteSqlRawAsync("INSERT INTO public.\"Comments\" (task_id,comment_text,comment_type,remainder_date,created_date" +
+                ") VALUES(@TaskId,@CommentText,@CommentType,@RemainderDate,@CreatedDate)", parameters);
         }
 
-        public Task<int> DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
-            return dbContext.Database.ExecuteSqlRawAsync("DELETE FROM public.\"Comments\" WHERE id = {0}", id);
+            return await dbContext.Database.ExecuteSqlRawAsync("DELETE FROM public.\"Comments\" WHERE id = {0}", id);
         }
 
         public async Task<IEnumerable<Comment>> GetAllAsync()
@@ -67,7 +72,7 @@ namespace TaskManagementSystem.Infrastructure.Persistence.Repositories
             return await dbContext.Comments.FromSqlRaw("SELECT * FROM public.\"Comments\" WHERE id = {0}", id).FirstOrDefaultAsync();
         }
 
-        public Task<int> UpdateAsync(Comment entity)
+        public async Task<int> UpdateAsync(Comment entity)
         {
             object[] parameters = new object[] {
                  new NpgsqlParameter("@ID", SqlDbType.Int)
@@ -92,7 +97,7 @@ namespace TaskManagementSystem.Infrastructure.Persistence.Repositories
                 },
 
             };
-            return dbContext.Database.ExecuteSqlRawAsync("UPDATE public.\"Comments\" SET comment_text = @CommentText, comment_type = @CommentType, remainder_date = @RemainderDate WHERE id = @ID ", parameters);
+            return await dbContext.Database.ExecuteSqlRawAsync("UPDATE public.\"Comments\" SET comment_text = @CommentText, comment_type = @CommentType, remainder_date = @RemainderDate WHERE id = @ID ", parameters);
         }
 
     }

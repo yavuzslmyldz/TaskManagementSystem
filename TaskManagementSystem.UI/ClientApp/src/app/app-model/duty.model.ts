@@ -4,6 +4,7 @@ export interface Duty {
   description: string;
   status: string;
   type: string;
-  assigned: string;
-  nextActionDate: Date;
+  assigned?: string;
+  nextActionDate?: Date;
+  createdDate: Date;
 }

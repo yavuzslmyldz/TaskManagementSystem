@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DashboardComponent {
   public tasks: Duty[] = [];
-  displayedColumns: string[] = ['requiredByDate', 'description', 'status', 'type', 'assigned', 'nextActionDate'];
+  displayedColumns: string[] = ['requiredByDate', 'description', 'status', 'type', 'assigned', 'nextActionDate', 'createdDate'];
 
   displayedColumnsStruct = [
     { name: 'Required By Date', value: 'requiredByDate', type: 'date' },
@@ -22,6 +22,7 @@ export class DashboardComponent {
     { name: 'Type', value: 'type', type: 'string' },
     { name: 'Assigned', value: 'assigned', type: 'string' },
     { name: 'Next Action Date', value: 'nextActionDate', type: 'date' },
+    { name: 'Created Date', value: 'createdDate', type: 'date' }
   ];
   dataSource: MatTableDataSource<Duty> = new MatTableDataSource<Duty>();
 

@@ -8,6 +8,7 @@
         public string Status { get; set; }
         public string Type { get; set; }
         public string Assigned { get; set; }
-        public DateTime NextActionDate { get; set; }
+        public DateTime? NextActionDate { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

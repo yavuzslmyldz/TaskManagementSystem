@@ -1,6 +1,8 @@
 export interface Comment {
+  id: number;
   taskId: number;
   commentText: string;
   commentType: string;
-  remainderDate: Date
+  remainderDate?: Date
+  createdDate: Date;
 }

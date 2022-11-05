@@ -32,13 +32,13 @@ namespace TaskManagementSystem.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<int> Create([FromBody] CommentDto dto)
+        public async Task<int> CreateAsync([FromBody] CommentDto dto)
         {
             return await _commentService.CreateAsync(dto);
         }
 
         [HttpPut]
-        public async Task<int> Update([FromBody] CommentDto dto)
+        public async Task<int> UpdateAsync([FromBody] CommentDto dto)
         {
             return await _commentService.UpdateAsync(dto);
         }

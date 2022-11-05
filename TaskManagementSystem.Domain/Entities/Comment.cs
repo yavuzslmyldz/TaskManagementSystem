@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TaskManagementSystem.Domain.Entities
 {
@@ -25,7 +26,11 @@ namespace TaskManagementSystem.Domain.Entities
         public string CommentType { get; set; }
 
         [Column("remainder_date")]
-        public DateTime RemainderDate { get; set; }
+        [AllowNull]
+        public DateTime? RemainderDate { get; set; }
+
+        [Column("created_date")]
+        public DateTime CreatedDate { get; set; }
 
     }
 }

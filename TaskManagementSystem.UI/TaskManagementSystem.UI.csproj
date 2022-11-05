@@ -34,6 +34,7 @@
     <None Remove="ClientApp\src\app\app-service\comment.service.ts" />
     <None Remove="ClientApp\src\app\app-service\task.service.ts" />
     <None Remove="ClientApp\src\app\app-util\commentFilter.pipe.ts" />
+    <None Remove="ClientApp\src\app\app-util\json.replacer.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\app-service\comment.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app-service\task.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app-util\commentFilter.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app-util\json.replacer.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

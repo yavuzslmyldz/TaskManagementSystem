@@ -18,7 +18,7 @@ export class TaskService {
   }
 
   update(_body: any): Observable<number> {
-    return this.http.post<number>(this.postRoute, _body, { headers: this._headers });
+    return this.http.put<number>(this.postRoute, _body, { headers: this._headers });
   }
 
   delete(_params: any): Observable<number> {

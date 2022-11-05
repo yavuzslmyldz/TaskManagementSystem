@@ -55,7 +55,8 @@ export class CommentsComponent {
   async deleteComment(id: number) {
 
     await this.commentService.delete({ 'id': id.toString() }).subscribe(() => {
-      this.snackBar.open('Comment Successfully Added.');
+      this.snackBar.open('Comment Successfully Deleted.');
+      this.refresh();
     }, error => { console.error(error); this.snackBar.open('Opps! Shomething went wrong.'); }); 
 
   }

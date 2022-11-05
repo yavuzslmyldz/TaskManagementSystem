@@ -17,6 +17,7 @@ namespace TaskManagementSystem.Domain.Entities
         [Column("required_by_date")]
         public DateTime RequiredByDate { get; set; }
 
+        [Required]
         [Column("description")]
         public string Description { get; set; }
 
@@ -29,12 +30,14 @@ namespace TaskManagementSystem.Domain.Entities
         public string Type { get; set; }
 
         [Column("assigned_to")]
+        [AllowNull]
         public string Assigned { get; set; }
-
 
         [Column("next_action_date")]
         [AllowNull]
         public DateTime? NextActionDate { get; set; }
 
+        [Column("created_date")]
+        public DateTime CreatedDate { get; set; }
     }
 }

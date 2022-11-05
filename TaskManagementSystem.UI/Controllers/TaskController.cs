@@ -32,13 +32,13 @@ namespace TaskManagementSystem.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<int> Create([FromBody] TaskDto dto)
+        public async Task<int> CreateAsync([FromBody] TaskDto dto)
         {
             return await _taskService.CreateAsync(dto);
         }
 
         [HttpPut]
-        public async Task<int> Update([FromBody] TaskDto dto)
+        public async Task<int> UpdateAsync([FromBody] TaskDto dto)
         {
             return await _taskService.UpdateAsync(dto);
         }

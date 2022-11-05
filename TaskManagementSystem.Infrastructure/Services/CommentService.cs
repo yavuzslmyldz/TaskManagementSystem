@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskManagementSystem.Application.Dto;
@@ -11,23 +12,47 @@ namespace TaskManagementSystem.Infrastructure.Services
     public class CommentService : ICommentService
     {
         private readonly ICommentReposityory _commentRepository;
+        private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
 
-        public CommentService(ICommentReposityory commentRepository, IMapper mapper)
+        public CommentService(ICommentReposityory commentRepository, ITaskRepository taskRepository, IMapper mapper)
         {
             _commentRepository = commentRepository;
+            _taskRepository = taskRepository;
             _mapper = mapper;
         }
-        
+
 
         public async Task<int> CreateAsync(CommentDto dto)
         {
-            return await _commentRepository.CreateAsync(_mapper.Map(dto, new Comment()));
+            int result = await _commentRepository.CreateAsync(_mapper.Map(dto, new Comment()));
+            
+            await FeedNextActionDateAsync(dto);
+
+            return await Task.FromResult(result);
+        }
+
+        private async Task<int> FeedNextActionDateAsync(CommentDto dto)
+        {
+            int result = 0;
+
+            if (!dto.RemainderDate.HasValue)
+                return await Task.FromResult(result);
+
+            var task = await _taskRepository.GetAsync(dto.TaskId);
+
+            if (!task.NextActionDate.HasValue || DateTime.Compare(dto.RemainderDate.Value, task.NextActionDate.Value) < 0)
+            {
+                task.NextActionDate = dto.RemainderDate;
+                result = await _taskRepository.UpdateAsync(task);
+            }
+
+            return await Task.FromResult(result);
         }
 
         public async Task<int> DeleteAsync(int id)
         {
-           return await _commentRepository.DeleteAsync(id);
+            return await _commentRepository.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<CommentDto>> GetAllAsync()
@@ -53,7 +78,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<int> UpdateAsync(CommentDto dto)
         {
-           return await _commentRepository.UpdateAsync(_mapper.Map(dto, new Comment()));
+            return await _commentRepository.UpdateAsync(_mapper.Map(dto, new Comment()));
         }
     }
 }

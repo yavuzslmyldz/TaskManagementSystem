@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TaskManagementSystem.Infrastructure.Persistence;
@@ -11,9 +12,10 @@ using TaskManagementSystem.Infrastructure.Persistence;
 namespace TaskManagementSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221105150232_TaskManagementSystem")]
+    partial class TaskManagementSystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,10 +43,6 @@ namespace TaskManagementSystem.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment_type");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
-
                     b.Property<DateTime?>("RemainderDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("remainder_date");
@@ -70,10 +68,6 @@ namespace TaskManagementSystem.Infrastructure.Migrations
                     b.Property<string>("Assigned")
                         .HasColumnType("text")
                         .HasColumnName("assigned_to");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
 
                     b.Property<string>("Description")
                         .IsRequired()

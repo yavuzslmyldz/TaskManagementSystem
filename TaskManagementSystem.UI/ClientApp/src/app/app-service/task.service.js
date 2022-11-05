@@ -22,7 +22,7 @@ var TaskService = /** @class */ (function () {
         return this.http.post(this.postRoute, _body, { headers: this._headers });
     };
     TaskService.prototype.update = function (_body) {
-        return this.http.post(this.postRoute, _body, { headers: this._headers });
+        return this.http.put(this.postRoute, _body, { headers: this._headers });
     };
     TaskService.prototype.delete = function (_params) {
         return this.http.delete(this.postRoute, { params: _params, headers: this._headers });

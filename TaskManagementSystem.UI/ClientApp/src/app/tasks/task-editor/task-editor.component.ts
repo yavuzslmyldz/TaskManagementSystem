@@ -30,7 +30,7 @@ export class TaskEditorComponent {
     type: new FormControl(''),
     description: new FormControl(''),
     assigned: new FormControl(''),
-    id: new FormControl('')
+    //id: new FormControl('')
   });
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class TaskEditorComponent {
             status: [this.task.status, [Validators.required]],
             type: [this.task.type, [Validators.required]],
             assigned: [this.task.assigned],
-            id: [this.task.id]
+            //id: [this.task.id]
           });
         }
       }, error => { console.error(error); this.snackBar.open('Opps! Shomething went wrong.'); }); 

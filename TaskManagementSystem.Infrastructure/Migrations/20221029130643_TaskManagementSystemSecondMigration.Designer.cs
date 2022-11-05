@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TaskManagementSystem.Infrastructure.Persistence;
@@ -11,9 +12,10 @@ using TaskManagementSystem.Infrastructure.Persistence;
 namespace TaskManagementSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221029130643_TaskManagementSystemSecondMigration")]
+    partial class TaskManagementSystemSecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace TaskManagementSystem.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TaskManagementSystem.Domain.Entities.Comment", b =>
+            modelBuilder.Entity("TaskManagementSystem.Core.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,11 +43,7 @@ namespace TaskManagementSystem.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment_type");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
-
-                    b.Property<DateTime?>("RemainderDate")
+                    b.Property<DateTime>("RemainderDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("remainder_date");
 
@@ -58,7 +56,7 @@ namespace TaskManagementSystem.Infrastructure.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("TaskManagementSystem.Domain.Entities.Duty", b =>
+            modelBuilder.Entity("TaskManagementSystem.Core.Entities.Task", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,16 +69,11 @@ namespace TaskManagementSystem.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("assigned_to");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("NextActionDate")
+                    b.Property<DateTime>("NextActionDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("next_action_date");
 
@@ -100,7 +93,7 @@ namespace TaskManagementSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Task");
+                    b.ToTable("Tasks");
                 });
 #pragma warning restore 612, 618
         }

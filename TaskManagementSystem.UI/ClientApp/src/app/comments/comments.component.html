@@ -23,6 +23,10 @@
     <mat-list-item *ngFor="let comment of comments | filter : searchText" (click)="selectComment(comment)">
       <mat-icon mat-list-icon>comment</mat-icon>
       <div mat-line> {{comment.commentText}} </div>
+      <div mat-line> added at: {{comment.createdDate | date: 'medium' }} </div>
+      <div mat-line>
+        <button type="button" (click)="deleteComment(comment.id);" class="btn btn-link"><mat-icon mat-list-icon>delete</mat-icon></button>
+      </div>
     </mat-list-item>
   </mat-list>
 </div>
