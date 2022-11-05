@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row custom-wrapper">
+    <div class="input-group mb-3">
+      <h1 id="tableLabel">Task Dashboard</h1>
+    </div>
+
+    <div class="input-group mb-3">
+      <a class="btn btn-primary" href="/add-task" role="button">Add Task</a>
+    </div>
+
+      <div class="input-group mb-5">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container [matColumnDef]="col.value" *ngFor="let col of displayedColumnsStruct">
+            <th mat-header-cell *matHeaderCellDef>{{ col.name }}</th>
+            <td mat-cell *matCellDef="let task">
+              {{ col.type == 'date' ? (task[col.value] | date: 'mediumDate') : task[col.value] }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+              There are no tasks yet. Let's add one!
+            </mat-footer-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+              Loading, please wait...
+            </mat-footer-cell>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let taskrow; columns: displayedColumns" (click)="showDetail(taskrow)"></tr>
+          <mat-footer-row *matFooterRowDef="['noData']" [hidden]="dataSource && dataSource.filteredData.length > 0"></mat-footer-row>
+          <mat-footer-row *matFooterRowDef="['loading']" [hidden]="dataSource !== undefined"></mat-footer-row>
+        </table>
+      </div>
+    </div>
+  </div>

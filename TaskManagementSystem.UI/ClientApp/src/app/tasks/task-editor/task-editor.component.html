@@ -1,0 +1,147 @@
+
+
+<div class="container mt-5">
+  <div class="row custom-wrapper">
+    <h2 class="mb-3 text-center">Task: {{task.id}}</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="update()">
+      <div class="d-grid">
+        <div class="mb-2">
+          <div class="btn-group">
+            <button type="submit" [disabled]="taskForm.invalid" class="btn btn-primary">Update</button>
+            <button type="button" (click)="openDeleteDialog()" class="btn btn-dark">Delete</button>
+          </div>
+        </div>
+        <!--#region requiredByDate  -->
+        <div class="input-group mb-2">
+          <div *ngIf="taskForm.get('requiredByDate')?.invalid &&
+        taskForm.get('requiredByDate')?.errors &&
+        (taskForm.get('requiredByDate')?.dirty || taskForm.get('requiredByDate')?.touched)">
+            <small class="text-danger"
+                   *ngIf="taskForm.get('requiredByDate')?.hasError('required')">
+              Required by date is required.
+            </small>
+          </div>
+        </div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Required by date *</span>
+          </div>
+          <input type="date" class="form-control" formControlName="requiredByDate" [(value)]="task.requiredByDate" [class.valid]="taskForm.get('requiredByDate')?.valid &&
+        (taskForm.get('requiredByDate')?.dirty || taskForm.get('requiredByDate')?.touched)"
+                 [class.invalid]="taskForm.get('description')?.invalid &&
+        (taskForm.get('requiredByDate')?.dirty || taskForm.get('requiredByDate')?.touched)">
+        </div>
+
+        <!--#endregion -->
+        <!--#region description  -->
+
+        <div class="input-group mb-2">
+          <div *ngIf="taskForm.get('description')?.invalid &&
+        taskForm.get('description')?.errors &&
+        (taskForm.get('description')?.dirty || taskForm.get('description')?.touched)">
+            <small class="text-danger"
+                   *ngIf="taskForm.get('description')?.hasError('required')">
+              Description is required.
+            </small>
+            <small class="text-danger"
+                   *ngIf="taskForm.get('description')?.hasError('minlength')">
+              The minimum length for description is {{taskForm.get('description')?.errors?.minlength.requiredLength}} characters.
+            </small>
+            <small class="text-danger"
+                   *ngIf="taskForm.get('description')?.hasError('maxlength')">
+              The maximum length for description is {{taskForm.get('description')?.errors?.maxlength.requiredLength}} characters.
+            </small>
+          </div>
+        </div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Description *</span>
+          </div>
+          <input type="text" class="form-control" [(value)]="task.description" formControlName="description"
+                 [class.valid]="taskForm.get('description')?.valid &&
+        (taskForm.get('description')?.dirty || taskForm.get('description')?.touched)"
+                 [class.invalid]="taskForm.get('description')?.invalid &&
+        (taskForm.get('description')?.dirty || taskForm.get('description')?.touched)">
+        </div>
+
+        <!--#endregion -->
+        <!--#region status  -->
+        <div class="input-group mb-2">
+          <div *ngIf="taskForm.get('status')?.invalid &&
+        taskForm.get('status')?.errors &&
+        (taskForm.get('status')?.dirty || taskForm.get('status')?.touched)">
+            <small class="text-danger"
+                   *ngIf="taskForm.get('status')?.hasError('required')">
+              Status is required.
+            </small>
+          </div>
+        </div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="status">Status *</label>
+          </div>
+          <select class="form-control mb-2"
+                  formControlName="status" id="status" [(value)]="task.status" [class.valid]="taskForm.get('status')?.valid &&
+        (taskForm.get('status')?.dirty || taskForm.get('status')?.touched)"
+                  [class.invalid]="taskForm.get('status')?.invalid &&
+        (taskForm.get('status')?.dirty || taskForm.get('status')?.touched)">
+            <option value="" disabled selected>Choose a status...</option>
+            <option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </option>
+          </select>
+        </div>
+        <!--#endregion -->
+        <!--#region type  -->
+        <div class="input-group mb-2">
+          <div *ngIf="taskForm.get('type')?.invalid &&
+        taskForm.get('type')?.errors &&
+        (taskForm.get('type')?.dirty || taskForm.get('type')?.touched)">
+            <small class="text-danger"
+                   *ngIf="taskForm.get('type')?.hasError('required')">
+              Type is required.
+            </small>
+          </div>
+        </div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="type">Type *</label>
+          </div>
+          <select class="form-control mb-2"
+                  formControlName="type" id="type" [(value)]="task.type" [class.valid]="taskForm.get('type')?.valid &&
+        (taskForm.get('type')?.dirty || taskForm.get('type')?.touched)"
+                  [class.invalid]="taskForm.get('type')?.invalid &&
+        (taskForm.get('type')?.dirty || taskForm.get('type')?.touched)">
+            <option value="" disabled selected>Choose a type...</option>
+            <option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+
+        <!--#endregion -->
+        <!--#region assigned  -->
+        <div class="input-group mb-1">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="type">Assigned</label>
+          </div>
+          <select class="form-control custom-select mb-1"
+                  formControlName="assigned" [(value)]="task.assigned" id="assigned">
+            <option value="" disabled selected>Choose a assigned...</option>
+            <option *ngFor="let assigned of assigns" [value]="assigned">
+              {{ assigned }}
+            </option>
+          </select>
+        </div>
+        <!--#endregion -->
+      </div>
+
+      <div class="mb-3">
+        <app-comments [taskId]="id"></app-comments>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+

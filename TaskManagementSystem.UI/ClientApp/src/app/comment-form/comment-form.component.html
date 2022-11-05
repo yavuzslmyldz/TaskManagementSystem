@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="row custom-wrapper">
+    <h2 class="mb-3 text-center">Add Comment</h2>
+    <form [formGroup]="commentForm" (ngSubmit)="create()">
+      <div class="d-grid">
+        <!--#region comment  -->
+        <div class="input-group mb-3">
+          <div *ngIf="commentForm.get('commentText')?.invalid &&
+        commentForm.get('commentText')?.errors &&
+        (commentForm.get('commentText')?.dirty || commentForm.get('commentText')?.touched)">
+            <small class="text-danger"
+                   *ngIf="commentForm.get('commentText')?.hasError('required')">
+              comment is required.
+            </small>
+            <small class="text-danger"
+                   *ngIf="commentForm.get('commentText')?.hasError('minlength')">
+              The minimum length for comment is {{commentForm.get('commentText')?.errors?.minlength.requiredLength}} characters.
+            </small>
+            <small class="text-danger"
+                   *ngIf="commentForm.get('commentText')?.hasError('maxlength')">
+              The maximum length for comment is {{commentForm.get('commentText')?.errors?.maxlength.requiredLength}} characters.
+            </small>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Comment *</span>
+          </div>
+          <input type="text" class="form-control" formControlName="commentText"
+                 [class.valid]="commentForm.get('commentText')?.valid &&
+        (commentForm.get('commentText')?.dirty || commentForm.get('commentText')?.touched)"
+                 [class.invalid]="commentForm.get('commentText')?.invalid &&
+        (commentForm.get('commentText')?.dirty || commentForm.get('commentText')?.touched)">
+        </div>
+
+        <!--#endregion -->
+        <!--#region commentType  -->
+        <div class="input-group mb-3">
+          <div *ngIf="commentForm.get('commentType')?.invalid &&
+        commentForm.get('commentType')?.errors &&
+        (commentForm.get('commentType')?.dirty || commentForm.get('commentType')?.touched)">
+            <small class="text-danger"
+                   *ngIf="commentForm.get('commentType')?.hasError('required')">
+              Comment Type is required.
+            </small>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="type">Type *</label>
+          </div>
+          <select class="form-control mb-3"
+                  formControlName="commentType" id="commentType" [class.valid]="commentForm.get('commentType')?.valid &&
+        (commentForm.get('commentType')?.dirty || commentForm.get('commentType')?.touched)"
+                  [class.invalid]="commentForm.get('commentType')?.invalid &&
+        (commentForm.get('commentType')?.dirty || commentForm.get('commentType')?.touched)">
+            <option value="" disabled selected>Choose a type...</option>
+            <option *ngFor="let type of types">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+
+        <!--#endregion -->
+        <!--#region remainderDate  -->
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Remainder Date</span>
+          </div>
+          <input type="date" class="form-control" formControlName="remainderDate">
+        </div>
+
+        <!--#endregion -->
+
+        <div class="mb-3">
+          <button type="submit" [disabled]="commentForm.invalid" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
