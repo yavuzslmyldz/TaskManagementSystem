@@ -37,7 +37,8 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<int> DeleteAsync(int id)
         {
-            Comment comment = await _commentRepository.GetAsync(id);
+            Comment comment = _commentRepository.GetAsync(id).GetAwaiter().GetResult();
+            
             int result = await _commentRepository.DeleteAsync(id);
 
             await ReFeedNextActionDateAsync(comment.TaskId);
